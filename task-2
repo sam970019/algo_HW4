@@ -1,0 +1,33 @@
+import sys
+
+# Recursive implementation of Fibonacci sequence
+def fibonacci_recursive(n):
+    if n <= 1:
+        return n
+    return fibonacci_recursive(n-1) + fibonacci_recursive(n-2)
+
+# Dynamic programming implementation of Fibonacci sequence
+def fibonacci_dynamic(n):
+    memo = [0] * (n+1)
+    memo[0], memo[1] = 0, 1
+    for i in range(2, n+1):
+        memo[i] = memo[i-1] + memo[i-2]
+    return memo[n]
+
+# Determine maximum value of n for recursive method
+n = 0
+while True:
+    try:
+        fibonacci_recursive(n+1)
+        print("n =",n)
+        n += 1
+    except:
+        print(f"Maximum value of n for recursive method: {n}")
+        break
+
+# Determine whether computer will still crash for dynamic programming method
+try:
+    fibonacci_dynamic(n+1)
+    print("Dynamic programming method does not cause computer to crash.")
+except:
+    print("Dynamic programming method still causes computer to crash.")
